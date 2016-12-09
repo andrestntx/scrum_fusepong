@@ -1,3 +1,5 @@
+require "pry"
+
 class SprintsController < ApplicationController
 	before_action :authenticate_user!
 	before_action :filter_admin, except: [:show_developer]
@@ -5,6 +7,15 @@ class SprintsController < ApplicationController
 	def create
 	    @project = Project.find(params[:project_id])
 	    @sprint = @project.sprints.create(sprint_params)
+
+	    #binding.pry
+
+	    params[:sprint][:sprint_productions][:date].split(",").each do |date|
+		   production = @sprint.sprint_productions.new()
+		   production.date = date 
+		   production.save()
+		end
+
 	    redirect_to project_path(@project)
 	end
  

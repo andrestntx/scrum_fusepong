@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!
-	before_action :filter_admin, except: [:index_developer, :show_developer]
+	before_action :filter_admin, except: [:index_developer, :show_developer, :account]
 	
 	def index
 		@users = User.all
@@ -16,5 +16,10 @@ class UsersController < ApplicationController
 
 	def show_developer
 		@user = User.find(params[:id])
+	end
+
+	def account
+		@user = current_user
+		@projects = Project.with_sprints(current_user.id)
 	end
 end

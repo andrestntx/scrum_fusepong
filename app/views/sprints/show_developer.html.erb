@@ -15,21 +15,9 @@
   <!-- /.row -->
   <div class="row">
     <!-- Project info -->
-    <div class="col-xs-12 col-sm-5">
-      <p id="notice"><%= notice %></p>
-    	<p>
-    	  <strong>Description:</strong>
-    	  <%= @project.description %>
-    	</p>
-      <p>
-        <strong>Client:</strong>
-        <%= @project.client %>
-      </p>
-      <p>
-        <strong>Started at:</strong>
-        <%= @project.started_at %>
-      </p>
-    </div>
+    <%= render "sprints/info" %>
+    <!-- Sprint dailies  -->
+    <%= render "sprints/dailies" %>
   </div>
   <!-- /.row -->
 </div>

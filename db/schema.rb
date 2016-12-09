@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161207224533) do
+ActiveRecord::Schema.define(version: 20161209154316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,18 @@ ActiveRecord::Schema.define(version: 20161207224533) do
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "dailies", force: :cascade do |t|
+    t.date     "date"
+    t.integer  "time",       default: 0
+    t.text     "comments"
+    t.integer  "sprint_id"
+    t.integer  "user_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["sprint_id"], name: "index_dailies_on_sprint_id", using: :btree
+    t.index ["user_id"], name: "index_dailies_on_user_id", using: :btree
   end
 
   create_table "developers", force: :cascade do |t|
@@ -47,6 +59,14 @@ ActiveRecord::Schema.define(version: 20161207224533) do
     t.datetime "updated_at"
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
     t.index ["name"], name: "index_roles_on_name", using: :btree
+  end
+
+  create_table "sprint_productions", force: :cascade do |t|
+    t.date     "date"
+    t.integer  "sprint_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sprint_id"], name: "index_sprint_productions_on_sprint_id", using: :btree
   end
 
   create_table "sprints", force: :cascade do |t|
@@ -84,5 +104,8 @@ ActiveRecord::Schema.define(version: 20161207224533) do
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
   end
 
+  add_foreign_key "dailies", "sprints"
+  add_foreign_key "dailies", "users"
+  add_foreign_key "sprint_productions", "sprints"
   add_foreign_key "sprints", "projects"
 end

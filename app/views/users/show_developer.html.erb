@@ -14,51 +14,13 @@
   <!-- /.row -->
   <div class="row">
     <!-- User info -->
-    <div class="col-xs-12 col-sm-5">
-      <p id="notice"><%= notice %></p>
-      <div class="col-xs-12">
-        <p>
-          <strong>Name:</strong>
-          <%= @user.name %>
-        </p>
-        <p>
-          <strong>Email:</strong>
-          <%= @user.email %>
-        </p>
-      </div>
-    </div>
-
+    <%= render "users/info" %>
     <!-- User projects  -->
-    <div class="col-xs-12 col-sm-7">
-      <!-- User Sprint Table  -->
-      <h2 class="h4">Projects:</h2>
-      <div class="row">
-        <div class="col-xs-12">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>Description</th>
-                <th>Client</th>
-                <th>Started at</th>
-                <th class="text-center">Sprints</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <% @user.projects.each do |project| %>
-                <tr>
-                  <td><%= link_to project.description, project_developer_path(project) %></td>
-                  <td><%= project.client %></td>
-                  <td><%= project.started_at %></td>
-                  <td class="text-center"><%= project.sprints.count %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-        <!-- /.col-xs-12 -->
-      </div>
-      <!-- /.row -->
+    <%= render "users/developer_projects" %>
+    <!-- User dailies  -->
+    <div class="col-xs-12">
+      <h2 class="h4">Dailies:</h2>
+      <%= render "users/dailies" %>
     </div>
   </div>
   <!-- /.row -->

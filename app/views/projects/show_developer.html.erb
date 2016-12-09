@@ -51,8 +51,10 @@
             <thead>
               <tr>
                 <th>Number</th>
+                <th class="text-center">Weeks</th>
                 <th>Started at</th>
-                <th>Weeks</th>
+                <th>Production dates</th>
+                
               </tr>
             </thead>
 
@@ -60,8 +62,13 @@
               <% @project.sprints.each do |sprint| %>
                 <tr>
                   <td><%= link_to "Sprint #{sprint.number}", project_sprint_developer_path(@project, sprint) %></td>
+                  <td class="text-center"><%= sprint.weeks %></td>
                   <td><%= sprint.started_at %></td>
-                  <td><%= sprint.weeks %></td>
+                  <td>
+                    <% sprint.sprint_productions.each do |production| %>
+                      <span class="label label-success"><%= production.date %></span>
+                    <% end %>
+                  </td>
                 </tr>
               <% end %>
             </tbody>

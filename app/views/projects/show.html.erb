@@ -31,63 +31,81 @@
           <%= @project.started_at %>
         </p>    
       </div>
-      <div class="col-xs-12">
-        <hr>
-        <h2 class="h4">Users:</h2>
-        <ul class="list-group">
-          <% @project.users.each do |user| %>
-            <li class="list-group-item"> <%= link_to user.name, user %> </li>
-          <% end %>
-        </ul>
-      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-4">
+      <h2 class="h4">Users:</h2>
+      <ul class="list-group">
+        <% @project.users.each do |user| %>
+          <li class="list-group-item"> <%= link_to user.name, user %> </li>
+        <% end %>
+      </ul>
     </div>
 
     <!-- Project sprints  -->
-    <div class="col-xs-12 col-sm-7">
-      <!-- New Project Sprint  -->
-      <h2 class="h4">New Sprint:</h2>
-      <%= form_for([@project, @project.sprints.build], html: { class: 'form-inline' }) do |f| %>
-        <div class="form-group">
-          <%= f.number_field :number, class: 'form-control', placeholder: 'Number' %>
-        </div>
-
-        <div class="form-group">
-          <%= f.text_field :started_at, class: 'form-control datepicker', placeholder: 'Started at' %>
-        </div>
-
-        <div class="form-group">
-          <%= f.number_field :weeks, class: 'form-control', placeholder: 'Weeks' %>
-        </div>
-
-        <%= f.submit 'Create', class: 'btn btn-primary'%>
-      <% end %>
-      <!-- Project Sprint Table  -->
-      <div class="row">
-        <div class="col-xs-12">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>Number</th>
-                <th>Started at</th>
-                <th>Weeks</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <% @project.sprints.each do |sprint| %>
-                <tr>
-                  <td><%= link_to "Sprint #{sprint.number}", [@project, sprint] %></td>
-                  <td><%= sprint.started_at %></td>
-                  <td><%= sprint.weeks %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-        <!-- /.col-xs-12 -->
+    <div class="col-xs-12">
+      <hr>
+      <div class="col-xs-12">
+        <h2 class="h4">Sprints:</h2>
       </div>
-      <!-- /.row -->
+      <div class="col-xs-12 col-sm-4">
+        <!-- New Project Sprint  -->
+        <%= form_for([@project, @project.sprints.build], html: { class: '' }) do |f| %>
+          <div class="form-group">
+            <%= f.number_field :number, class: 'form-control', placeholder: 'Number' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.text_field :started_at, class: 'form-control datepicker', placeholder: 'Started at' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.fields_for :sprint_productions do |p| %>
+              <%= p.text_field :date, class: 'form-control datepicker-multiple', placeholder: 'Production at' %>
+            <% end %>
+            
+          </div>
+
+          <div class="form-group">
+            <%= f.number_field :weeks, class: 'form-control', placeholder: 'Weeks' %>
+          </div>
+
+          <%= f.submit 'New Sprint', class: 'btn btn-primary'%>
+        <% end %>
+      </div>
+      <div class="col-xs-12 col-sm-8">
+        <!-- Project Sprint Table  -->
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Number</th>
+              <th class="text-center">Weeks</th>
+              <th>Started at</th>
+              <th>Production dates</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @project.sprints.each do |sprint| %>
+              <tr>
+                <td><%= link_to "Sprint #{sprint.number}", [@project, sprint] %></td>
+                <th class="text-center"><%= sprint.weeks %></th>
+                <td><%= sprint.started_at %></td>
+                <td>
+                  <% sprint.sprint_productions.each do |production| %>
+                    <span class="label label-success"><%= production.date %></span>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.col-xs-12.col-sm-5 -->
     </div>
+    <!-- /.col-xs-12 -->
+
+    
   </div>
   <!-- /.row -->
 </div>
