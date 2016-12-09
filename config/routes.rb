@@ -1,7 +1,27 @@
 Rails.application.routes.draw do
 	
-	resources :projects do
-	  resources :sprints
+	scope 'admin' do
+		resources :projects do
+		  resources :sprints
+		end
+
+		resources :users
+	end
+
+	scope 'developer' do
+		scope 'projects', controller: 'projects' do
+			get '/', as: 'projects_developer', action: 'index_developer'
+			get '/:id', as: 'project_developer', action: 'show_developer'
+		end
+
+		scope 'projects/:project_id/sprints', controller: 'sprints' do
+			get '/:id', as: 'project_sprint_developer', action: 'show_developer'
+		end
+
+		scope 'users', controller: 'users' do
+			get '/', as: 'users_developer', action: 'index_developer'
+			get '/:id', as: 'user_developer', action: 'show_developer'
+		end
 	end
 
 	devise_for :users, path: 'auth', controllers: { 

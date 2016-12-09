@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :show_developer, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :filter_admin, except: [:index_developer, :show_developer]
+  
 
   # GET /projects
   # GET /projects.json
@@ -8,9 +10,16 @@ class ProjectsController < ApplicationController
     @projects = Project.all
   end
 
+  def index_developer
+    @projects = Project.all
+  end
+
   # GET /projects/1
   # GET /projects/1.json
   def show
+  end
+
+  def show_developer
   end
 
   # GET /projects/new
@@ -29,6 +38,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+        @project.user_ids = params[:project]['user_ids']
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
@@ -43,6 +53,7 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
+        @project.user_ids = params[:project]['user_ids']
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else

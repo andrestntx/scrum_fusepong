@@ -1,12 +1,11 @@
-<%= render "layouts/admin/navbar" %>
+<%= render "layouts/developer/navbar" %>
 
 <div id="page-wrapper">
   <div class="row">
       <div class="col-lg-12">
           <h1 class="page-header">
-          	<%= link_to 'Projects /', projects_path, class: 'breadcrumb-text' %> 
+          	<%= link_to 'Projects /', projects_developer_path, class: 'breadcrumb-text' %> 
             <%= @project.name %>
-          	<%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-warning' %>    
           </h1>
           
       </div>
@@ -36,7 +35,7 @@
         <h2 class="h4">Users:</h2>
         <ul class="list-group">
           <% @project.users.each do |user| %>
-            <li class="list-group-item"> <%= link_to user.name, user %> </li>
+            <li class="list-group-item"> <%= link_to user.name, user_developer_path(user) %> </li>
           <% end %>
         </ul>
       </div>
@@ -44,23 +43,7 @@
 
     <!-- Project sprints  -->
     <div class="col-xs-12 col-sm-7">
-      <!-- New Project Sprint  -->
-      <h2 class="h4">New Sprint:</h2>
-      <%= form_for([@project, @project.sprints.build], html: { class: 'form-inline' }) do |f| %>
-        <div class="form-group">
-          <%= f.number_field :number, class: 'form-control', placeholder: 'Number' %>
-        </div>
-
-        <div class="form-group">
-          <%= f.text_field :started_at, class: 'form-control datepicker', placeholder: 'Started at' %>
-        </div>
-
-        <div class="form-group">
-          <%= f.number_field :weeks, class: 'form-control', placeholder: 'Weeks' %>
-        </div>
-
-        <%= f.submit 'Create', class: 'btn btn-primary'%>
-      <% end %>
+      <h2 class="h4">Sprints:</h2>
       <!-- Project Sprint Table  -->
       <div class="row">
         <div class="col-xs-12">
@@ -76,7 +59,7 @@
             <tbody>
               <% @project.sprints.each do |sprint| %>
                 <tr>
-                  <td><%= link_to "Sprint #{sprint.number}", [@project, sprint] %></td>
+                  <td><%= link_to "Sprint #{sprint.number}", project_sprint_developer_path(@project, sprint) %></td>
                   <td><%= sprint.started_at %></td>
                   <td><%= sprint.weeks %></td>
                 </tr>

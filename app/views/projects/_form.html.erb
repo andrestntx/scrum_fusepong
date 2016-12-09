@@ -31,6 +31,11 @@
     <%= f.text_field :started_at, class: 'form-control datepicker' %>
   </div>
 
+  <div class="field">
+    <%= f.label :users %>
+    <%= f.collection_select :user_ids, User.all, :id, :name, {'selected': @project.user_ids}, {:multiple => true, class: "input-lg form-control"} %>
+  </div>
+
   <div class="actions">
     <%= f.submit class: 'btn btn-primary' %>
   </div>

@@ -1,4 +1,7 @@
 class SprintsController < ApplicationController
+	before_action :authenticate_user!
+	before_action :filter_admin, except: [:show_developer]
+
 	def create
 	    @project = Project.find(params[:project_id])
 	    @sprint = @project.sprints.create(sprint_params)
@@ -6,6 +9,11 @@ class SprintsController < ApplicationController
 	end
  
 	def show
+		@project = Project.find(params[:project_id])
+	    @sprint = @project.sprints.find(params[:id])
+	end
+
+	def show_developer
 		@project = Project.find(params[:project_id])
 	    @sprint = @project.sprints.find(params[:id])
 	end
