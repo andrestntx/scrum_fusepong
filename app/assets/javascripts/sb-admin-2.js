@@ -21,7 +21,7 @@ $(function() {
             center: 'title',
             right: 'month,agendaWeek,agendaDay',
             defaultView: "week",
-            height: 500,
+            height: 400,
             slotMinutes: 15
         },
         editable: false,
@@ -35,7 +35,7 @@ $(function() {
             center: 'title',
             right: 'month,agendaWeek,agendaDay',
             defaultView: "week",
-            height: 500,
+            height: 400,
             slotMinutes: 15
         },
         editable: false,
