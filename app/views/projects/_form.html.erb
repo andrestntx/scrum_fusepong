@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= f.label :users %>
-    <%= f.collection_select :user_ids, User.all, :id, :name, {'selected': @project.user_ids}, {:multiple => true, class: "input-lg form-control"} %>
+    <%= f.collection_select :user_ids, User.role('developer'), :id, :name, {'selected': @project.user_ids}, {:multiple => true, class: "input-lg form-control"} %>
   </div>
 
   <div class="actions">
