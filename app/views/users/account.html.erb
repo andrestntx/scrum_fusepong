@@ -4,8 +4,7 @@
   <div class="row">
       <div class="col-lg-12">
           <h1 class="page-header">
-            <%= link_to 'Users /', users_developer_path, class: 'breadcrumb-text' %> 
-            <%= @user.name %>
+            My Account
           </h1>
           
       </div>
@@ -13,10 +12,8 @@
   </div>
   <!-- /.row -->
   <div class="row">
-    <!-- User info -->
-    <%= render "users/info" %>
     <!-- User projects  -->
-    <%= render "users/developer_projects" %>
+    <%= render "users/account_projects" %>
     <!-- User dailies  -->
     <div class="col-xs-12">
       <h2 class="h4">Dailies:</h2>
@@ -30,7 +27,7 @@
             </div>
 
             <div class="form-group">
-            <%= select :daily, :time, options_for_select([['Part time', 'part'], ['Full time', 'full']]), {}, { class: 'form-control' } %>
+            <%= collection_select :daily, :daily_time_id, DailyTime.all, :id, :name, {}, {class: "form-control", placeholder: "Time"} %>
             </div>
 
             <div class="form-group">
@@ -41,7 +38,8 @@
           <% end %>
         </div>
         <div class="col-md-9 col-sm-6 col-xs-12">
-          <%= render "users/dailies" %>
+          <!-- User Calendar  -->
+          <div id="calendar" data-userid="<%= @user.id %>"></div>
         </div>
       </div>
     </div>

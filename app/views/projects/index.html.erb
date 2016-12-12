@@ -22,6 +22,9 @@
               <th>Client</th>
               <th>Started at</th>
               <th class="text-center">Sprints</th>
+              <th class="text-center">Dailies</th>
+              <th class="text-center">Hours</th>
+              <th class="text-center">Users</th>
               <th colspan="2" class="text-center">Options</th>
             </tr>
           </thead>
@@ -32,7 +35,10 @@
                 <td><%= link_to project.name, project %></td>
                 <td><%= project.client %></td>
                 <td><%= project.started_at %></td>
-                <td class="text-center"><%= project.sprints.count %></td>
+                <td class="text-center"><%= project.sprints.count %> / <%= project.month_sprints_count %> </td>
+                <td class="text-center"><%= project.dailies_count %> / <%= project.month_dailies_count %></td>
+                <td class="text-center"><%= project.hours %> / <%= project.month_hours %></td>
+                <td class="text-center"><%= project.users.count %></td>
                 <td><%= link_to 'Edit', edit_project_path(project), class: 'btn btn-warning' %></td>
                 <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
               </tr>

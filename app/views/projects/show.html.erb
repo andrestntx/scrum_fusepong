@@ -15,7 +15,7 @@
   <!-- /.row -->
   <div class="row">
     <!-- Project info -->
-    <div class="col-xs-12 col-sm-5">
+    <div class="col-xs-12 col-sm-4">
       <p id="notice"><%= notice %></p>
       <div class="col-xs-12">
         <p>
@@ -29,31 +29,32 @@
         <p>
           <strong>Started at:</strong>
           <%= @project.started_at %>
+        </p>
+        <p>
+          <strong>Dailies:</strong>
+          <%= @project.dailies_count %> / <%= @project.month_dailies_count %>
+        </p> 
+        <p>
+          <strong>Hours:</strong>
+          <%= @project.hours %> / <%= @project.month_hours %>
         </p>    
       </div>
     </div>
 
-    <div class="col-xs-12 col-sm-4">
-      <h2 class="h4">Users:</h2>
-      <ul class="list-group">
-        <% @project.users.each do |user| %>
-          <li class="list-group-item"> <%= link_to user.name, user %> </li>
-        <% end %>
-      </ul>
+    <div class="col-xs-12 col-sm-8">
+      <h2 class="h4">Users (<%= @project.users.count %>):</h2>
+      <%= render "users/table" %>
     </div>
 
     <!-- Project sprints  -->
     <div class="col-xs-12">
       <hr>
       <div class="col-xs-12">
-        <h2 class="h4">Sprints:</h2>
+        <h2 class="h4">Sprints (<%= @project.sprints.count %> / <%= @project.month_sprints_count %>):</h2>
       </div>
-      <div class="col-xs-12 col-sm-4">
+      <div class="col-xs-12 col-sm-3">
         <!-- New Project Sprint  -->
         <%= form_for([@project, @project.sprints.build], html: { class: '' }) do |f| %>
-          <div class="form-group">
-            <%= f.number_field :number, class: 'form-control', placeholder: 'Number' %>
-          </div>
 
           <div class="form-group">
             <%= f.text_field :started_at, class: 'form-control datepicker', placeholder: 'Started at' %>
@@ -73,14 +74,16 @@
           <%= f.submit 'New Sprint', class: 'btn btn-primary'%>
         <% end %>
       </div>
-      <div class="col-xs-12 col-sm-8">
+      <div class="col-xs-12 col-sm-9">
         <!-- Project Sprint Table  -->
         <table class="table table-hover">
           <thead>
             <tr>
-              <th>Number</th>
+              <th>Sprint</th>
               <th class="text-center">Weeks</th>
               <th>Started at</th>
+              <th class="text-center">Dailies</th>
+              <th class="text-center">Hours</th>
               <th>Production dates</th>
             </tr>
           </thead>
@@ -91,6 +94,8 @@
                 <td><%= link_to "Sprint #{sprint.number}", [@project, sprint] %></td>
                 <th class="text-center"><%= sprint.weeks %></th>
                 <td><%= sprint.started_at %></td>
+                <td class="text-center"> <%= sprint.dailies.count %> </td>
+                <td class="text-center"> <%= sprint.time_hours %></td>
                 <td>
                   <% sprint.sprint_productions.each do |production| %>
                     <span class="label label-success"><%= production.date %></span>

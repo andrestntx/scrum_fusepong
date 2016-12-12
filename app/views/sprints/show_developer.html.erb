@@ -15,9 +15,13 @@
   <!-- /.row -->
   <div class="row">
     <!-- Project info -->
-    <%= render "sprints/info" %>
-    <!-- Sprint dailies  -->
-    <%= render "sprints/dailies" %>
+    <div class="col-xs-12 col-sm-5 col-md-3">
+      <%= render "sprints/info" %>
+    </div>
+    <!-- Table users -->
+    <div class="col-xs-12 col-sm-7 col-md-9">
+      <div id="sprint-calendar" data-sprintid="<%= @sprint.id %>" data-projectid="<%= @sprint.project.id %>"></div>
+    </div>
   </div>
   <!-- /.row -->
 </div>

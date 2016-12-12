@@ -13,44 +13,32 @@
   </div>
   <!-- /.row -->
   <div class="row">
-    <!-- User info -->
-    <div class="col-xs-12 col-sm-5">
-      <p id="notice"><%= notice %></p>
-      <div class="col-xs-12">
-        <p>
-          <strong>Name:</strong>
-          <%= @user.name %>
-        </p>
-        <p>
-          <strong>Email:</strong>
-          <%= @user.email %>
-        </p>
-      </div>
-    </div>
-
     <!-- User projects  -->
-    <div class="col-xs-12 col-sm-7">
+    <div class="col-xs-12">
       <!-- User Sprint Table  -->
-      <h2 class="h4">Projects:</h2>
       <div class="row">
         <div class="col-xs-12">
           <table class="table table-hover">
             <thead>
               <tr>
-                <th>Description</th>
+                <th>Project</th>
                 <th>Client</th>
                 <th>Started at</th>
                 <th class="text-center">Sprints</th>
+                <th class="text-center">Dailies</th>
+                <th class="text-center">Hours</th>
               </tr>
             </thead>
 
             <tbody>
-              <% @user.projects.each do |project| %>
+              <% @projects.each do |project| %>
                 <tr>
                   <td><%= link_to project.description, project %></td>
                   <td><%= project.client %></td>
                   <td><%= project.started_at %></td>
-                  <td class="text-center"><%= project.sprints.count %></td>
+                  <td class="text-center"><%= project.sprints.count %> / <%= project.month_sprints_count %></td>
+                  <td class="text-center"><%= project.month_dailies_count %> / <%= project.dailies_count %></td>
+                  <td class="text-center"><%= project.month_hours %> / <%= project.hours %> </td>
                 </tr>
               <% end %>
             </tbody>
@@ -59,6 +47,11 @@
         <!-- /.col-xs-12 -->
       </div>
       <!-- /.row -->
+    </div>
+    <div class="col-xs-12">
+      <hr>
+      <!-- User Calendar  -->
+      <div id="calendar" data-userid="<%= @user.id %>"></div>
     </div>
   </div>
   <!-- /.row -->

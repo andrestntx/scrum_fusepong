@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :show_developer, :edit, :update, :destroy]
+  before_action :set_project, only: [:show_developer, :edit, :update, :destroy]
   before_action :authenticate_user!
   before_action :filter_admin, except: [:index_developer, :show_developer]
   
@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.report(month_now)
   end
 
   def index_developer
@@ -17,6 +17,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @users = User.report_by_project(params[:id], month_now)
+    @project = Project.report(month_now).find(params[:id])
   end
 
   def show_developer

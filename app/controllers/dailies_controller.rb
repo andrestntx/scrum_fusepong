@@ -18,6 +18,6 @@ class DailiesController < ApplicationController
 	private
 		# Never trust parameters from the scary internet, only allow the white list through.
 	    def daily_params
-	      params.require(:daily).permit(:time, :comments)
+	      params.require(:daily).permit(:time, :comments, :daily_time_id)
 	    end
 end

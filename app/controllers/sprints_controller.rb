@@ -1,32 +1,48 @@
 class SprintsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :filter_admin, except: [:show_developer]
+	before_action :filter_admin, except: [:show_developer, :calendar]
+	before_action :set_sprint, only: [:calendar]
 
 	def create
-	    @project = Project.find(params[:project_id])
-	    @sprint = @project.sprints.create(sprint_params)
+	    project = Project.find(params[:project_id])
+	    sprint = project.new_sprint(sprint_params)
+	    sprint.add_productions(sprint_productions)
 
-	    params[:sprint][:sprint_productions][:date].split(",").each do |date|
-		   production = @sprint.sprint_productions.new()
-		   production.date = date 
-		   production.save()
-		end
-
-	    redirect_to project_path(@project)
+	    redirect_to project_path(project)
 	end
  
 	def show
 		@project = Project.find(params[:project_id])
-	    @sprint = @project.sprints.find(params[:id])
+		@sprint = Sprint.report(month_now).find(params[:id])
+		@users = User.report_by_sprint(@sprint.id, month_now)
 	end
 
 	def show_developer
 		@project = Project.find(params[:project_id])
-	    @sprint = @project.sprints.find(params[:id])
+		@sprint = Sprint.report(month_now).find(params[:id])
+		@users = User.report_by_sprint(@sprint.id, month_now)
+	end
+
+	def calendar
+	    events = []
+	    @sprint.dailies.each do |daily|
+	      events << {:id => daily.created_at, :title => "#{daily.user.name} - #{daily.comments}", 
+	      	:start => "#{daily.time_start}", :end => "#{daily.time_end}", :allDay => daily.full? }
+	    end
+	    render :text => events.to_json
 	end
 
 	private
 	    def sprint_params
 	      params.require(:sprint).permit(:started_at, :weeks, :number)
 	    end
+
+	    def sprint_productions
+	    	params[:sprint][:sprint_productions][:date].split(",")
+	    end
+
+	    def set_sprint
+	    	@project = Project.find(params[:project_id])
+			@sprint = @project.sprints.find(params[:id])
+		end
 end

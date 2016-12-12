@@ -15,4 +15,8 @@ class ApplicationController < ActionController::Base
   	def filter_developer
   		filter_role 'developer', projects_path
   	end
+
+    def month_now
+      return DateTime.now.month
+    end
 end

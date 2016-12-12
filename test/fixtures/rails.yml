@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  generate: MyString
+  model: MyString
+  DailyTime: MyString
+  name: MyString
+  init: 1
+  finish: 1
+
+two:
+  generate: MyString
+  model: MyString
+  DailyTime: MyString
+  name: MyString
+  init: 1
+  finish: 1

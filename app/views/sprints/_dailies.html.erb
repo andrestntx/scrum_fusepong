@@ -17,7 +17,7 @@
           <% @sprint.dailies.each do |daily| %>
             <tr>
               <td><%= daily.created_at.strftime("%Y-%m-%d") %></td>
-              <td><%= daily.time %></td>
+              <td><%= daily.daily_time.name %></td>
               <td><%= daily.user.name %></td>
               <td><%= daily.comments %></td>
             </tr>

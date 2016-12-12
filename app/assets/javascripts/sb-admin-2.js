@@ -14,6 +14,34 @@ $(function() {
         format: "yyyy-mm-dd",
         multidate: true
     });
+
+    $('#calendar').fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay',
+            defaultView: "week",
+            height: 500,
+            slotMinutes: 15
+        },
+        editable: false,
+        allDay: false,
+        events: "/developer/users/" + $("#calendar").attr("data-userid") + "/calendar",
+    });
+
+    $('#sprint-calendar').fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay',
+            defaultView: "week",
+            height: 500,
+            slotMinutes: 15
+        },
+        editable: false,
+        allDay: false,
+        events: "/developer/projects/" + $("#sprint-calendar").attr("data-projectid") + "/sprints/" + $("#sprint-calendar").attr("data-sprintid") + "/calendar",
+    });
 });
 
 //Loads the correct sidebar on window load,
