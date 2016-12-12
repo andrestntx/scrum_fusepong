@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 	end
 
 	def index_developer
-		@users = User.all
+		@users = User.role('developer')
 	end
 
 	def show_developer
