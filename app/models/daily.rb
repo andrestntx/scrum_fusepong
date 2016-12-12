@@ -21,6 +21,6 @@ class Daily < ApplicationRecord
 
 	protected
 		def time(hour)
-			return self.created_at.change({ hour: hour, min: 0, sec: 0 })
+			return self.created_at.change({ hour: hour + 5, min: 0, sec: 0 })
 		end
 end
