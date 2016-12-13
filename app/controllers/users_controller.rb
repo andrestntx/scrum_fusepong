@@ -26,7 +26,9 @@ class UsersController < ApplicationController
 	def calendar
 	    events = []
 
-	    
+	    @user.dailies.each do |daily|
+	      events << daily.calendar_user
+	    end
 
 	    sprints = Sprint.joins(:users, :project).where("users.id = 1").references(:users).group("sprints.id")
 	    sprints.each do |sprint|
