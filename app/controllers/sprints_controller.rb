@@ -25,10 +25,17 @@ class SprintsController < ApplicationController
 
 	def calendar
 	    events = []
+	    
 	    @sprint.dailies.each do |daily|
-	      events << {:id => daily.created_at, :title => "#{daily.user.name} - #{daily.comments}", 
-	      	:start => "#{daily.time_start}", :end => "#{daily.time_end}", :allDay => daily.full? }
+	      events << daily.calendar_sprint
 	    end
+
+	    @sprint.sprint_productions.each do |production|
+	      events << production.calendar
+	    end
+
+	    events << @sprint.calendar
+
 	    render :text => events.to_json
 	end
 

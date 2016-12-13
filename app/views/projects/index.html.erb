@@ -21,6 +21,7 @@
               <th>Project</th>
               <th>Client</th>
               <th>Started at</th>
+              <th class="text-center">Cal. Sprints</th>
               <th class="text-center">Sprints</th>
               <th class="text-center">Dailies</th>
               <th class="text-center">Hours</th>
@@ -35,6 +36,7 @@
                 <td><%= link_to project.name, project %></td>
                 <td><%= project.client %></td>
                 <td><%= project.started_at %></td>
+                <td class="text-center"><%= project.calculated_sprints %> </td>
                 <td class="text-center"><%= project.sprints.count %> / <%= project.month_sprints_count %> </td>
                 <td class="text-center"><%= project.dailies_count %> / <%= project.month_dailies_count %></td>
                 <td class="text-center"><%= project.hours %> / <%= project.month_hours %></td>

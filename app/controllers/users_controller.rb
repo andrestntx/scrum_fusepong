@@ -25,10 +25,15 @@ class UsersController < ApplicationController
 
 	def calendar
 	    events = []
-	    @user.dailies.each do |daily|
-	      events << {:id => daily.created_at, :title => "#{daily.sprint.project.name} - #{daily.comments}", 
-	      	:start => "#{daily.time_start}", :end => "#{daily.time_end}", :allDay => daily.full? }
+
+	    
+
+	    sprints = Sprint.joins(:users, :project).where("users.id = 1").references(:users).group("sprints.id")
+	    sprints.each do |sprint|
+	      events << sprint.calendar
 	    end
+
+
 	    render :text => events.to_json
 	end
 

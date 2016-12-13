@@ -17,8 +17,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @users = User.report_by_project(params[:id], month_now)
-    @project = Project.report(month_now).find(params[:id])
+    @users    = User.report_by_project(params[:id], month_now)
+    @project  = Project.report(month_now).find(params[:id])
   end
 
   def show_developer
@@ -83,6 +83,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :description, :client, :started_at)
+      params.require(:project).permit(:name, :description, :client, :started_at, :calculated_sprints, :color)
     end
 end

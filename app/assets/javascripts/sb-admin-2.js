@@ -20,12 +20,10 @@ $(function() {
             left: 'prev,next today',
             center: 'title',
             right: 'month,agendaWeek,agendaDay',
-            defaultView: "week",
-            height: 400,
-            slotMinutes: 15
         },
         editable: false,
-        allDay: false,
+        defaultView: "agendaWeek",
+        firstDay: 1,
         events: "/developer/users/" + $("#calendar").attr("data-userid") + "/calendar",
     });
 
@@ -34,14 +32,12 @@ $(function() {
             left: 'prev,next today',
             center: 'title',
             right: 'month,agendaWeek,agendaDay',
-            defaultView: "week",
-            height: 400,
-            slotMinutes: 15
         },
         editable: false,
-        allDay: false,
+        defaultView: "month",
+        firstDay: 1,
         events: "/developer/projects/" + $("#sprint-calendar").attr("data-projectid") + "/sprints/" + $("#sprint-calendar").attr("data-sprintid") + "/calendar",
-    });
+    }); 
 });
 
 //Loads the correct sidebar on window load,

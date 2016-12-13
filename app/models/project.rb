@@ -96,6 +96,9 @@ class Project < ApplicationRecord
 	    .left_join_user_dailies(user_id)
 	    .left_join_user_dailies_month(user_id, month)
 	    .left_join_sprints_month(month)
+	    .joins(:users)
+	    .group("projects.id, all_dailies.hours, all_dailies.dailies_count, 
+	      	month_hours, month_dailies_count, month_sprints_count")
 	}
 
 

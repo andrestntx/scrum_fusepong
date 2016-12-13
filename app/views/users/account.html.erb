@@ -31,6 +31,10 @@
             </div>
 
             <div class="form-group">
+              <%= text_field :daily, :date, { class: 'form-control datepicker', placeholder: 'Date' } %>
+            </div>
+
+            <div class="form-group">
               <%= text_area :daily, :comments, { class: 'form-control', placeholder: 'Comments' } %>
             </div>
             

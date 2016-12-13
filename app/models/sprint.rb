@@ -65,5 +65,14 @@ class Sprint < ApplicationRecord
 		self.dailies.count
 	end
 
+	def finish_at
+		return self.started_at + self.weeks.weeks
+	end
+
+	def calendar
+		{ :start => self.started_at, :end => self.finish_at, :color => self.project.color,
+	      	:rendering => 'background', :allDay => true }
+	end
+
 
 end

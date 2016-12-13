@@ -128,7 +128,10 @@ class User < ApplicationRecord
 	    )
 	    .left_join_project_dailies(project_id)
 	    .left_join_project_dailies_month(project_id, month)
+	    .joins(:projects)
 	    .role('developer')
+	    .group("users.id, all_dailies.hours, all_dailies.dailies_count, 
+	      	month_hours, month_dailies_count")
 	}
 
 	scope :report_by_sprint, -> (sprint_id, month) {
