@@ -3,7 +3,7 @@
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
-$(function() {
+$(document).ready(function() {
     $('#side-menu').metisMenu();
     
     $('.datepicker').datepicker({
@@ -82,7 +82,7 @@ $(function() {
 //Loads the correct sidebar on window load,
 //collapses the sidebar on window resize.
 // Sets the min-height of #page-wrapper to window size
-$(function() {
+$(document).ready(function() {
     $(window).bind("load resize", function() {
         var topOffset = 50;
         var width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
