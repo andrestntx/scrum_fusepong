@@ -68,8 +68,12 @@ $(function() {
         $("#dailyModal .modal-user span").text(calendarEvent.user);
         $("#dailyModal .modal-comments span").text(calendarEvent.comments);
 
-        $("#dailyModal .modal-start span").text(calendarEvent.start.format('ddd, D MMM YYYY, h:mm A'));
-        if(calendarEvent.end) {
+        if(calendarEvent.allDay) {
+            $("#dailyModal .modal-start span").text(calendarEvent.start.format('ddd, D MMM YYYY'));
+            $("#dailyModal .modal-end span").text('All day');                
+        }
+        else {
+            $("#dailyModal .modal-start span").text(calendarEvent.start.format('ddd, D MMM YYYY, h:mm A'));
             $("#dailyModal .modal-end span").text(calendarEvent.end.format('ddd, D MMM YYYY, h:mm A'));                
         }
     }

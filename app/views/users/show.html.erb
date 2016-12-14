@@ -33,7 +33,7 @@
             <tbody>
               <% @projects.each do |project| %>
                 <tr>
-                  <td><%= link_to project.description, project %></td>
+                  <td><%= link_to project.name, project %></td>
                   <td><%= project.client %></td>
                   <td><%= project.started_at %></td>
                   <td class="text-center"><%= project.sprints.count %> / <%= project.month_sprints_count %></td>
