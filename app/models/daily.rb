@@ -39,7 +39,7 @@ class Daily < ApplicationRecord
 	end
 
 	protected
-		def time(hour)
-			return self.date_at.change({ hour: hour, min: 0, sec: 0 })
+		def time(hours)
+			return self.date + hours.hours
 		end
 end
