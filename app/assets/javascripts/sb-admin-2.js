@@ -46,38 +46,6 @@ $(document).ready(function() {
         }
     }); 
 
-    function drawCalendarEvent(calendarEvent) {
-        if(calendarEvent.production) {
-            drawProductionModal(calendarEvent);
-            $("#productionModal").modal();
-        }
-        else {
-            drawDailyModal(calendarEvent);
-            $("#dailyModal").modal();
-        }
-    }
-
-    function drawProductionModal(calendarEvent) {
-        $("#productionModal .modal-title").text('Sprint ' + calendarEvent.sprint + ' - ' + calendarEvent.project);
-        $("#productionModal .modal-start span").text(calendarEvent.start.format('ddd, D MMM YYYY'));
-    }
-
-    function drawDailyModal(calendarEvent) {
-        $("#dailyModal .modal-title").text('Sprint ' + calendarEvent.sprint + ' - ' + calendarEvent.project);
-        
-        $("#dailyModal .modal-user span").text(calendarEvent.user);
-        $("#dailyModal .modal-comments span").text(calendarEvent.comments);
-
-        if(calendarEvent.allDay) {
-            $("#dailyModal .modal-start span").text(calendarEvent.start.format('ddd, D MMM YYYY'));
-            $("#dailyModal .modal-end span").text('All day');                
-        }
-        else {
-            $("#dailyModal .modal-start span").text(calendarEvent.start.format('ddd, D MMM YYYY, h:mm A'));
-            $("#dailyModal .modal-end span").text(calendarEvent.end.format('ddd, D MMM YYYY, h:mm A'));                
-        }
-    }
-    
     $(window).bind("load resize", function() {
         var topOffset = 50;
         var width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
@@ -112,3 +80,35 @@ $(document).ready(function() {
         }
     }
 });
+
+function drawCalendarEvent(calendarEvent) {
+    if(calendarEvent.production) {
+        drawProductionModal(calendarEvent);
+        $("#productionModal").modal();
+    }
+    else {
+        drawDailyModal(calendarEvent);
+        $("#dailyModal").modal();
+    }
+}
+
+function drawProductionModal(calendarEvent) {
+    $("#productionModal .modal-title").text('Sprint ' + calendarEvent.sprint + ' - ' + calendarEvent.project);
+    $("#productionModal .modal-start span").text(calendarEvent.start.format('ddd, D MMM YYYY'));
+}
+
+function drawDailyModal(calendarEvent) {
+    $("#dailyModal .modal-title").text('Sprint ' + calendarEvent.sprint + ' - ' + calendarEvent.project);
+
+    $("#dailyModal .modal-user span").text(calendarEvent.user);
+    $("#dailyModal .modal-comments span").text(calendarEvent.comments);
+
+    if(calendarEvent.allDay) {
+        $("#dailyModal .modal-start span").text(calendarEvent.start.format('ddd, D MMM YYYY'));
+        $("#dailyModal .modal-end span").text('All day');                
+    }
+    else {
+        $("#dailyModal .modal-start span").text(calendarEvent.start.format('ddd, D MMM YYYY, h:mm A'));
+        $("#dailyModal .modal-end span").text(calendarEvent.end.format('ddd, D MMM YYYY, h:mm A'));                
+    }
+}
