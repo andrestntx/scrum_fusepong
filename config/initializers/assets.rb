@@ -17,9 +17,9 @@ Rails.application.config.assets.precompile += %w( login.scss )
 Rails.application.config.assets.precompile += %w( fullcalendar/fullcalendar.css )
 Rails.application.config.assets.precompile += %w( fullcalendar/fullcalendar.print.css )
 
-
-Rails.application.config.assets.precompile += %w( metisMenu/metisMenu.min.js )
-Rails.application.config.assets.precompile += %w( datepicker/bootstrap-datepicker.min.js )
+Rails.application.config.assets.precompile += %w( bootstrap/bootstrap.min.js )
 Rails.application.config.assets.precompile += %w( moment/moment.min.js )
 Rails.application.config.assets.precompile += %w( fullcalendar/fullcalendar.js )
+Rails.application.config.assets.precompile += %w( datepicker/bootstrap-datepicker.min.js )
+Rails.application.config.assets.precompile += %w( metisMenu/metisMenu.min.js )
 Rails.application.config.assets.precompile += %w( sb-admin-2.js )
