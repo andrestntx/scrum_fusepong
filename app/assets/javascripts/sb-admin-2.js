@@ -99,7 +99,6 @@ var ApplicationService = function() {
             eventClick: function(calendarEvent, jsEvent, view) {
                 drawCalendarEvent(calendarEvent);
             }
-
         });
 
         $('#sprint-calendar').fullCalendar({
@@ -121,6 +120,7 @@ var ApplicationService = function() {
     return {
         init: function() {
             initApplication();
+            loadTemplate();
         }
     };
 }();

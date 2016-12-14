@@ -13,3 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap/bootstrap.min
+//= require moment/moment.min
+//= require fullcalendar/fullcalendar
+//= require datepicker/bootstrap-datepicker.min
+//= require metisMenu/metisMenu.min
