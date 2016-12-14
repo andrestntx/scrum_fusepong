@@ -26,12 +26,16 @@ class Daily < ApplicationRecord
 
 	def calendar_sprint
 		{ :id => self.created_at, :title => "#{self.user.name} - #{self.comments}", 
-	    :start => self.time_start, :end => self.time_end, :allDay => self.full? }
+	    :start => self.time_start, :end => self.time_end, :allDay => self.full?, 
+	    :user => self.user.name, :project => self.sprint.project.name, :sprint => self.sprint.number,
+	    :comments => self.comments }
 	end
 
 	def calendar_user
 		{ :id => self.created_at, :title => "#{self.sprint.project.name} - #{self.comments}", 
-	    :start => self.time_start, :end => self.time_end, :allDay => self.full? }
+	    :start => self.time_start, :end => self.time_end, :allDay => self.full?,
+	    :user => self.user.name, :project => self.sprint.project.name, :sprint => self.sprint.number,
+	    :comments => self.comments }
 	end
 
 	protected

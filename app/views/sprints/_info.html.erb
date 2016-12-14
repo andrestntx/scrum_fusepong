@@ -12,6 +12,13 @@
   <%= @sprint.started_at %>
 </p>
 <p>
+  <strong>Production dates:</strong>
+  <% @sprint.sprint_productions.each do |production| %>
+    <span class="label label-success"><%= production.date %></span>
+  <% end %>
+</p>
+
+<p>
   <strong>Weeks:</strong>
   <%= @sprint.weeks %>
 </p>

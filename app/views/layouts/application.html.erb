@@ -27,6 +27,8 @@
 
   <body>
     <%= yield %>
+    <%= render "dailies/modal" %>
+    <%= render "dailies/modal_production" %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <!-- Latest compiled and minified JavaScript -->
     <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' %>

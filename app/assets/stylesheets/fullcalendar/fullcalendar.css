@@ -727,6 +727,10 @@ tr:first-child > td > .fc-day-grid-event {
 	overflow: hidden;
 }
 
+a.fc-event {
+	cursor: pointer;
+}
+
 .fc-day-grid-event .fc-time {
 	font-weight: bold;
 }

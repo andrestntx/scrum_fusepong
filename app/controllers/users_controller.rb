@@ -27,14 +27,20 @@ class UsersController < ApplicationController
 	    events = []
 
 	    @user.dailies.each do |daily|
-	      events << daily.calendar_user
+	      	events << daily.calendar_user
 	    end
 
 	    sprints = Sprint.joins(project: :users).where("projects_users.user_id = #{@user.id}").group("sprints.id")
 
 	    sprints.each do |sprint|
-	      events << sprint.calendar
+			events << sprint.calendar
+
+			sprint.sprint_productions.each do |production|
+				events << production.calendar_user
+			end
 	    end
+
+
 
 	    render :text => events.to_json
 	end

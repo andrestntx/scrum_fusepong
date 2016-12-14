@@ -1,0 +1,44 @@
+<%= render "layouts/admin/navbar" %>
+
+<div id="page-wrapper">
+  <div class="row">
+      <div class="col-lg-12">
+          <h1 class="page-header">
+          	<%= link_to 'Projects /', projects_path, class: 'breadcrumb-text' %> 
+            <%= link_to "#{ @sprint.project.name } / ", project_path(@sprint.project), class: 'breadcrumb-text' %>
+            <%= link_to "Sprint #{ @sprint.number } / ", project_sprint_path(@sprint.project, @sprint), class: 'breadcrumb-text' %> 
+            edit
+          </h1>
+          
+      </div>
+      <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+  <div class="row">
+    <!-- Table users -->
+    <div class="col-xs-12 col-sm-5">
+        <!-- New Project Sprint  -->
+
+        <%= form_tag project_sprint_path(@project, @sprint), method: "PUT" do %>
+          <div class="form-group">
+            <%= label_tag :started_at %>
+            <%= text_field_tag 'sprint[started_at]', @sprint.started_at, class: 'form-control datepicker', placeholder: 'Started at' %>
+          </div>
+
+          <div class="form-group">
+            <%= label_tag :sprint_productions %>
+            <%= text_field_tag 'sprint[sprint_productions][date]', @sprint.sprint_productions.map(&:date).join(','), class: 'form-control datepicker-multiple', placeholder: 'Production dates' %>
+          </div>
+
+          <div class="form-group">
+            <%= label_tag :weeks %>
+            <%= number_field_tag 'sprint[weeks]', @sprint.weeks, class: 'form-control', placeholder: 'Weeks' %>
+          </div>
+
+          <%= submit_tag 'Update Sprint', class: 'btn btn-primary'%>
+        <% end %>
+      </div>
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->

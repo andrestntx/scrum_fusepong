@@ -25,6 +25,10 @@ $(function() {
         defaultView: "agendaWeek",
         firstDay: 1,
         events: "/developer/users/" + $("#calendar").attr("data-userid") + "/calendar",
+        eventClick: function(calendarEvent, jsEvent, view) {
+            drawCalendarEvent(calendarEvent);
+        }
+
     });
 
     $('#sprint-calendar').fullCalendar({
@@ -37,7 +41,38 @@ $(function() {
         defaultView: "month",
         firstDay: 1,
         events: "/developer/projects/" + $("#sprint-calendar").attr("data-projectid") + "/sprints/" + $("#sprint-calendar").attr("data-sprintid") + "/calendar",
+        eventClick: function(calendarEvent, jsEvent, view) {
+            drawCalendarEvent(calendarEvent);    
+        }
     }); 
+
+    function drawCalendarEvent(calendarEvent) {
+        if(calendarEvent.production) {
+            drawProductionModal(calendarEvent);
+            $("#productionModal").modal();
+        }
+        else {
+            drawDailyModal(calendarEvent);
+            $("#dailyModal").modal();
+        }
+    }
+
+    function drawProductionModal(calendarEvent) {
+        $("#productionModal .modal-title").text('Sprint ' + calendarEvent.sprint + ' - ' + calendarEvent.project);
+        $("#productionModal .modal-start span").text(calendarEvent.start.format('ddd, D MMM YYYY'));
+    }
+
+    function drawDailyModal(calendarEvent) {
+        $("#dailyModal .modal-title").text('Sprint ' + calendarEvent.sprint + ' - ' + calendarEvent.project);
+        
+        $("#dailyModal .modal-user span").text(calendarEvent.user);
+        $("#dailyModal .modal-comments span").text(calendarEvent.comments);
+
+        $("#dailyModal .modal-start span").text(calendarEvent.start.format('ddd, D MMM YYYY, h:mm A'));
+        if(calendarEvent.end) {
+            $("#dailyModal .modal-end span").text(calendarEvent.end.format('ddd, D MMM YYYY, h:mm A'));                
+        }
+    }
 });
 
 //Loads the correct sidebar on window load,

@@ -43,7 +43,14 @@
 
   <div class="form-group">
     <%= f.label :users %>
-    <%= f.collection_select :user_ids, User.role('developer'), :id, :name, {'selected': @project.user_ids}, {:multiple => true, class: "input-lg form-control"} %>
+    <% User.role('developer').each do |user| %>
+      <div class="checkbox">
+        <label>
+          <%= check_box_tag "project[user_ids][]", user.id, f.object.users.include?(user) %>
+          <%= user.name %>
+        </label>
+      </div>
+    <% end %>
   </div>
 
   <div class="actions">

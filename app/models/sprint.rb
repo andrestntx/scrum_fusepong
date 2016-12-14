@@ -3,6 +3,7 @@ class Sprint < ApplicationRecord
 	has_many :sprint_productions
 	has_many :dailies
 	has_many :users, through: :dailies
+	accepts_nested_attributes_for :sprint_productions
 
 	scope :left_join_dailies, -> { 
 		joins("LEFT OUTER JOIN (
@@ -57,6 +58,11 @@ class Sprint < ApplicationRecord
 		end
 	end
 
+	def update_productions(dates)
+		self.sprint_productions.clear
+		self.add_productions(dates)
+	end
+
 	def time_hours
 		self.dailies.sum(&:time_hours)
 	end
@@ -71,7 +77,7 @@ class Sprint < ApplicationRecord
 
 	def calendar
 		{ :start => self.started_at, :end => self.finish_at, :color => self.project.color,
-	      	:rendering => 'background', :allDay => true }
+	    :rendering => 'background', :allDay => true }
 	end
 
 
