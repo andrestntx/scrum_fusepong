@@ -5,10 +5,10 @@
  */
 $(document).ready(function() {
 
-    $('.datepicker-multiple').datepicker({
+    /*$('.datepicker-multiple').datepicker({
         format: "yyyy-mm-dd",
         multidate: true
-    });
+    });*/
 
     $('#calendar').fullCalendar({
         header: {
