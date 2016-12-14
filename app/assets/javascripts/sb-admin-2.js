@@ -4,11 +4,9 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 $(document).ready(function() {
-    //$('#side-menu').metisMenu();
-    
-    //$('.datepicker').datepicker({
-    //    format: "yyyy-mm-dd"
-    //});
+    $('.datepicker').datepicker({
+        format: "yyyy-mm-dd"
+    });
     
     $('.datepicker-multiple').datepicker({
         format: "yyyy-mm-dd",
@@ -79,6 +77,8 @@ $(document).ready(function() {
             break;
         }
     }
+
+    $('#side-menu').metisMenu();
 });
 
 function drawCalendarEvent(calendarEvent) {
