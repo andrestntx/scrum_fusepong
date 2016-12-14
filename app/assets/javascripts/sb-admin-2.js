@@ -75,11 +75,11 @@ $(document).ready(function() {
         }
     }
 
-    $('#side-menu').metisMenu();
+    //$('#side-menu').metisMenu();
 
-    $('.datepicker').datepicker({
+    /*$('.datepicker').datepicker({
         format: "yyyy-mm-dd"
-    });
+    });*/
 });
 
 function drawCalendarEvent(calendarEvent) {
