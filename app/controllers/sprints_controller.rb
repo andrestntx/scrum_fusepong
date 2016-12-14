@@ -14,7 +14,7 @@ class SprintsController < ApplicationController
 	def show
 		@project = Project.find(params[:project_id])
 		@sprint = Sprint.report(month_now).find(params[:id])
-		@users = User.report_by_sprint(@sprint.id, month_now)
+		@users = User.report_by_sprint(@project.id, @sprint.id, month_now)
 	end
 
 	def show_developer

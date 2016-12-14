@@ -59,7 +59,7 @@
             </thead>
 
             <tbody>
-              <% @project.sprints.each do |sprint| %>
+              <% @project.sprints.order(number: :desc).each do |sprint| %>
                 <tr>
                   <td><%= link_to "Sprint #{sprint.number}", project_sprint_developer_path(@project, sprint) %></td>
                   <td class="text-center"><%= sprint.weeks %></td>

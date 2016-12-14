@@ -128,21 +128,25 @@ class User < ApplicationRecord
 	    )
 	    .left_join_project_dailies(project_id)
 	    .left_join_project_dailies_month(project_id, month)
-	    .joins(:projects)
-	    	.where("projects.id = #{project_id}").references(:projects)
+	    .with_project(project_id)
 	    .role('developer')
 	    .group("users.id, all_dailies.hours, all_dailies.dailies_count, 
 	      	month_hours, month_dailies_count")
 	}
 
-	scope :report_by_sprint, -> (sprint_id, month) {
+	scope :report_by_sprint, -> (project_id, sprint_id, month) {
 		select("users.id, users.name, 
 			all_dailies.hours, all_dailies.dailies_count, 
 	      	month_dailies.hours as month_hours, month_dailies.dailies_count as month_dailies_count"
 	    )
 	    .left_join_sprint_dailies(sprint_id)
 	    .left_join_sprint_dailies_month(sprint_id, month)
+	    .with_project(project_id)
 	    .role('developer')
+	}
+
+	scope :with_project, -> (project_id) {
+		joins(:projects).where("projects.id = #{project_id}").references(:projects)
 	}
 
 	# get last sprint of the project_id
