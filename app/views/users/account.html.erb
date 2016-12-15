@@ -21,7 +21,12 @@
       <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">      
           <%= form_tag(dailies_path(@user, @user.dailies.build), html: { class: '' }) do %>
-            
+            <ul>
+              <% @new_daily.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+
             <div class="form-group">
               <%= collection_select :daily, :project_id, @projects, :id, :name, {}, {class: "form-control", placeholder: "Projects"} %>
             </div>
@@ -37,6 +42,8 @@
             <div class="form-group">
               <%= text_area :daily, :comments, { class: 'form-control', placeholder: 'Comments' } %>
             </div>
+
+            <%= render "layouts/messages" %>
             
             <%= submit_tag 'New Daily', class: 'btn btn-primary'%>
           <% end %>

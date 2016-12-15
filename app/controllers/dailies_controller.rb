@@ -6,12 +6,12 @@ class DailiesController < ApplicationController
 	# POST /users/:user_id/dailies
 	def create
 		@user = User.find(params[:user_id])
-		@daily = @user.new_daily(params[:daily][:project_id], daily_params)
+		@new_daily = @user.new_daily(params[:daily][:project_id], daily_params)
 
-		if @daily.save
+		if @new_daily.save
 			redirect_to account_path, notice: 'Daily was successfully created.'
 		else
-			redirect_to account_path, alert: 'Error'
+			redirect_to account_path, alert: 'Errors: ' + @new_daily.errors.full_messages.join(', ')
 		end
 	end
 

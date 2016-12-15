@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213224523) do
+ActiveRecord::Schema.define(version: 20161214204218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20161213224523) do
     t.datetime "updated_at",    null: false
     t.integer  "daily_time_id"
     t.index ["daily_time_id"], name: "index_dailies_on_daily_time_id", using: :btree
+    t.index ["date", "user_id", "daily_time_id"], name: "index_dailies_on_date_and_user_id_and_daily_time_id", unique: true, using: :btree
     t.index ["sprint_id"], name: "index_dailies_on_sprint_id", using: :btree
     t.index ["user_id"], name: "index_dailies_on_user_id", using: :btree
   end

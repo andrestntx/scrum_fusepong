@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 	def account
 		@user = current_user
 		@projects = Project.report_by_user(current_user.id, month_now)
+		@new_daily = @user.dailies.build
 	end
 
 	def calendar

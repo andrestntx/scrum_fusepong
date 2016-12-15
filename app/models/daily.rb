@@ -2,6 +2,8 @@ class Daily < ApplicationRecord
 	belongs_to :sprint
 	belongs_to :user
 	belongs_to :daily_time
+	validates  :sprint, :user, :daily_time, :date, :comments, presence: true
+	validates  :date, uniqueness: { scope: [ :user, :daily_time ]}
 
 	def time_start 
 		return self.time self.daily_time.init
