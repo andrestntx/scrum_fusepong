@@ -38,30 +38,22 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
 
-    respond_to do |format|
-      if @project.save
-        @project.user_ids = params[:project]['user_ids']
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
-        format.json { render :show, status: :created, location: @project }
-      else
-        format.html { render :new }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
+    if @project.save
+      @project.user_ids = params[:project]['user_ids']
+      redirect_to @project, notice: 'Project was successfully created.'
+    else
+      redirect_to new_project_path(@project), alert: 'Errors: ' + @project.errors.full_messages.join(', ')
     end
   end
 
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
-    respond_to do |format|
-      if @project.update(project_params)
-        @project.user_ids = params[:project]['user_ids']
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
-        format.json { render :show, status: :ok, location: @project }
-      else
-        format.html { render :edit }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
+    if @project.update(project_params)
+      @project.user_ids = params[:project]['user_ids']
+      redirect_to @project, notice: 'Project was successfully created.'
+    else
+      redirect_to edit_project_path(@project), alert: 'Errors: ' + @project.errors.full_messages.join(', ')
     end
   end
 

@@ -72,6 +72,10 @@
             <%= number_field_tag 'sprint[weeks]', nil, class: 'form-control', placeholder: 'Weeks' %>
           </div>
 
+          <div class="form-group">
+            <%= render "layouts/messages" %>
+          </div>
+
           <%= submit_tag 'New Sprint', class: 'btn btn-primary'%>
         <% end %>
       </div>

@@ -4,6 +4,7 @@ class Sprint < ApplicationRecord
 	has_many :dailies
 	has_many :users, through: :dailies
 	accepts_nested_attributes_for :sprint_productions
+	validates  :started_at, :weeks, presence: true
 
 	scope :left_join_dailies, -> { 
 		joins("LEFT OUTER JOIN (

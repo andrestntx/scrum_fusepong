@@ -21,6 +21,10 @@
 
         <%= form_tag project_sprint_path(@project, @sprint), method: "PUT" do %>
           <div class="form-group">
+            <%= render "layouts/messages" %>
+          </div>
+          
+          <div class="form-group">
             <%= label_tag :started_at %>
             <%= text_field_tag 'sprint[started_at]', @sprint.started_at, class: 'form-control datepicker', placeholder: 'Started at' %>
           </div>
@@ -33,6 +37,10 @@
           <div class="form-group">
             <%= label_tag :weeks %>
             <%= number_field_tag 'sprint[weeks]', @sprint.weeks, class: 'form-control', placeholder: 'Weeks' %>
+          </div>
+
+          <div class="form-group">
+            <%= render "layouts/messages" %>
           </div>
 
           <%= submit_tag 'Update Sprint', class: 'btn btn-primary'%>

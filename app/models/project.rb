@@ -1,6 +1,7 @@
 class Project < ApplicationRecord
 	has_many :sprints
 	has_and_belongs_to_many :users
+	validates  :name, presence: true
 
 	scope :left_join_dailies, -> { 
 		joins("LEFT OUTER JOIN (
@@ -110,8 +111,8 @@ class Project < ApplicationRecord
 
 	def new_sprint(params)
 		sprint = self.sprints.new(params)
-	    sprint.number = self.sprints.count() + 1
-	    sprint.save()
+	    sprint.number = self.sprints.count + 1
+	    sprint.save
 	    return sprint
 	end
 

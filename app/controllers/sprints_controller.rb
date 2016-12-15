@@ -30,9 +30,13 @@ class SprintsController < ApplicationController
 	def create
 	    project = Project.find(params[:project_id])
 	    sprint = project.new_sprint(sprint_params)
-	    sprint.add_productions(sprint_productions)
 
-	    redirect_to project_path(project)
+	    if sprint.errors.any?
+	    	redirect_to project, alert: 'Errors: ' + sprint.errors.full_messages.join(', ')
+	    else
+	    	sprint.add_productions(sprint_productions)
+	      	redirect_to project, notice: 'Sprint was successfully created.'  
+	    end
 	end
 
 	# PATCH/PUT /projects/1
@@ -41,7 +45,7 @@ class SprintsController < ApplicationController
 	    	@sprint.update_productions(sprint_productions)
 			redirect_to project_sprint_path, notice: 'Sprint was successfully updated.'
 		else
-			redirect_to project_sprint_path, alert: 'Error'
+			redirect_to project_sprint_path, alert: 'Errors: ' + @sprint.errors.full_messages.join(', ')
 		end
 	end
 
