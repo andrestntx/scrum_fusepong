@@ -5,7 +5,7 @@
     </div>
     <div class="col-xs-8" id="team">
         <div class="row">
-          <% User.all.each do |user| %>
+          <% User.role("developer").each do |user| %>
             <a href="<%= team_mobile_path(user) %>" class="col-xs-4 col-sm-3 avatar">
               <img src="<%= user.avatar %>" class="img-responsive">
               <p><%=h truncate(user.name, :length => 15) %></p>
