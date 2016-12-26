@@ -1,6 +1,6 @@
 class DailiesController < ApplicationController
 	before_action :authenticate_user!
-	before_action :new_daily, only: [:create, :create_mobile]
+	before_action :new_daily, only: [:create, :create_mobilee]
 	
 	def index
 		@dailies = current_user.dailies
@@ -15,11 +15,11 @@ class DailiesController < ApplicationController
 		end
 	end
 
-	def create_mobile
+	def create_mobilee
 		if @new_daily.save
-			redirect_to team_mobil_path(@user), notice: 'Daily was successfully created.'
+			redirect_to team_mobile_path(@user), notice: 'Daily was successfully created.'
 		else
-			redirect_to team_mobil_path(@user), alert: 'Errors: ' + @new_daily.errors.full_messages.join(', ')
+			redirect_to team_mobile_path(@user), alert: 'Errors: ' + @new_daily.errors.full_messages.join(', ')
 		end
 	end
 

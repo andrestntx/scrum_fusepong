@@ -6,8 +6,8 @@
     <div class="col-xs-8" id="team">
         <div class="row">
           <% User.all.each do |user| %>
-            <a href="<%= team_mobil_path(user) %>" class="col-xs-4 col-sm-3 avatar">
-              <img src="http://placehold.it/100x100" class="img-responsive">
+            <a href="<%= team_mobile_path(user) %>" class="col-xs-4 col-sm-3 avatar">
+              <img src="<%= user.avatar %>" class="img-responsive">
               <p><%=h truncate(user.name, :length => 15) %></p>
             </a>
           <% end %>
@@ -16,7 +16,7 @@
     <!-- /.col-xs-8 -->
     <div class="col-xs-4" id="projects">
       <% Project.all.each do |project| %>
-        <a href="<%= projects_mobil_path(project) %>" class="col-xs-12 project" style="background-color: <%= project.color %>">
+        <a href="<%= projects_mobile_path(project) %>" class="col-xs-12 project" style="background-color: <%= project.color %>">
           <%= project.name %>
         </a>
       <% end %>    

@@ -1,4 +1,4 @@
-class MobilController < ApplicationController
+class MobileController < ApplicationController
 	before_action :authenticate_user!
 	
 	def index

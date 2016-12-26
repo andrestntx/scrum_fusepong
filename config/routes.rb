@@ -8,10 +8,10 @@ Rails.application.routes.draw do
 		resources :users
 	end
 
-	scope 'mobil', controller: 'mobil' do
-		get '/', as: 'index_mobil', action: 'index'	
-		get '/projects/:id', as: 'projects_mobil', action: 'projects'	
-		get '/team/:id', as: 'team_mobil', action: 'team'	
+	scope 'mobile', controller: 'mobile' do
+		get '/', as: 'index_mobile', action: 'index'	
+		get '/projects/:id', as: 'projects_mobile', action: 'projects'	
+		get '/team/:id', as: 'team_mobile', action: 'team'	
 	end
 
 	scope 'developer' do
