@@ -12,7 +12,7 @@
 
       <div class="row project-users">
         <% @project.users.each do |user| %>
-          <a href="<%= team_mobil_path(user) %>" class="col-xs-5 avatar">
+          <a href="<%= team_mobil_path(user) %>" class="col-xs-6 avatar">
             <img src="http://placehold.it/100x100" class="img-responsive">
             <p><%= user.name %></p>
           </a>

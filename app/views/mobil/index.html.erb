@@ -8,7 +8,7 @@
           <% User.all.each do |user| %>
             <a href="<%= team_mobil_path(user) %>" class="col-xs-4 col-sm-3 avatar">
               <img src="http://placehold.it/100x100" class="img-responsive">
-              <p><%= user.name %></p>
+              <p><%=h truncate(user.name, :length => 15) %></p>
             </a>
           <% end %>
         </div>
