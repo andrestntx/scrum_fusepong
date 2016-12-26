@@ -12,3 +12,63 @@
  *
  *= require_self
  */
+
+.container-mobile a.avatar img {
+    border-radius: 25%;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.container-mobile a.avatar p {
+    text-align: center;
+    margin-top: 0.5em;
+    font-size: 1.1em;
+}
+
+.container-mobile #projects {
+    border-left: 4px solid #66b5f3;
+    height: 100%;
+}
+
+.container-mobile .project {
+    padding-top: 1.2em;
+    padding-bottom: 1.2em;
+    margin: 0.5em 0;
+    background: #dde2e2;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.container-mobile .logo {
+	max-width: 320px;
+    margin-bottom: 2em;
+}
+
+.container-mobile#user-detail img.avatar {
+	margin-bottom: 2em;
+    margin-top: 0;
+    width: 120px;
+    border-radius: 30%;	
+}
+
+.container-mobile#user-detail .logo, .container-mobile#project-detail .logo  {
+    max-width: 250px;
+    margin-bottom: 0; 
+}
+
+.container-mobile#user-detail #calendar-container {
+	margin-top: 2.5em;
+}
+
+.container-mobile#project-detail .project-users {
+	margin-top: 2em;
+}
+
+.container-mobile .project {
+    padding-top: 1.2em;
+    padding-bottom: 1.2em;
+    /* margin: 0.5em 0; */
+    background: #dde2e2;
+    text-align: center;
+    font-size: 1.2em;
+}

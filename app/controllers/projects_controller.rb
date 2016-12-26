@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show_developer, :edit, :update, :destroy]
+  before_action :set_project, only: [:show_developer, :edit, :update, :destroy, :calendar]
   before_action :authenticate_user!
   before_action :filter_admin, except: [:index_developer, :show_developer]
   
@@ -19,6 +19,24 @@ class ProjectsController < ApplicationController
   def show
     @users    = User.report_by_project(params[:id], month_now)
     @project  = Project.report(month_now).find(params[:id])
+  end
+
+  def calendar
+      events = []
+      
+      @project.sprints.each do |sprint|
+        events << sprint.calendar
+
+        sprint.sprint_productions.each do |production|
+          events << production.calendar
+        end
+
+        sprint.dailies.each do |daily|
+          events << daily.calendar_sprint
+        end
+      end
+
+      render :text => events.to_json
   end
 
   def show_developer

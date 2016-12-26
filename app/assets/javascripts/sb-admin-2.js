@@ -115,6 +115,21 @@ var ApplicationService = function() {
                 drawCalendarEvent(calendarEvent);    
             }
         }); 
+
+        $('#project-calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay',
+            },
+            editable: false,
+            defaultView: "month",
+            firstDay: 1,
+            events: "/developer/projects/" + $("#project-calendar").attr("data-projectid") + "/calendar",
+            eventClick: function(calendarEvent, jsEvent, view) {
+                drawCalendarEvent(calendarEvent);    
+            }
+        }); 
     }
 
     return {

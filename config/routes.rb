@@ -8,10 +8,17 @@ Rails.application.routes.draw do
 		resources :users
 	end
 
+	scope 'mobil', controller: 'mobil' do
+		get '/', as: 'index_mobil', action: 'index'	
+		get '/projects/:id', as: 'projects_mobil', action: 'projects'	
+		get '/team/:id', as: 'team_mobil', action: 'team'	
+	end
+
 	scope 'developer' do
 		scope 'projects', controller: 'projects' do
 			get '/', as: 'projects_developer', action: 'index_developer'
 			get '/:id', as: 'project_developer', action: 'show_developer'
+			get '/:id/calendar', as: 'project_calendar', action: 'calendar'
 		end
 
 		scope 'projects/:project_id/sprints', controller: 'sprints' do
@@ -27,6 +34,7 @@ Rails.application.routes.draw do
 
 		scope 'users/:user_id' do
 			resources :dailies
+			post '/dailies/mobile', as: 'dailies_mobile', controller: 'dailies', action: 'create_mobile'
 		end
 
 		get '/account', as: 'account', controller: 'users', action: 'account'
