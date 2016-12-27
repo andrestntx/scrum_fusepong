@@ -51,8 +51,10 @@
 
 .container-mobile#user-detail img.avatar {
 	margin-bottom: 2em;
-    margin-top: 0;
-    width: 120px;
+    margin-top: 1em;
+    margin-right: 1em;
+    float: right;
+    width: 110px;
     border-radius: 30%;	
 }
 

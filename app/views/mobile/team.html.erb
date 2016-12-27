@@ -1,10 +1,12 @@
 <div class="container container-mobile" id="user-detail">
   <div class="row">
-    <a class="col-xs-12" href="<%= index_mobile_path %>">
+    <a class="col-xs-8" href="<%= index_mobile_path %>">
       <img src="/fusepong.png" alt="" class="img-responsive logo">
     </a>
-    <div class="col-xs-12 col-sm-4" id="team">
+    <div class="col-xs-4">
       <img src="<%= @user.avatar %>" class="img-responsive avatar"> 
+    </div>
+    <div class="col-xs-12 col-sm-4" id="team">
       <%= form_tag(dailies_mobile_path(@user, @user.dailies.build), html: { class: '' }) do %>
         <ul>
           <% @new_daily.errors.full_messages.each do |msg| %>
@@ -35,11 +37,11 @@
         </div>
 
         <div class="form-group">
-          <%= text_field :daily, :date, { class: 'form-control datepicker', placeholder: 'Date' } %>
+          <%= text_field :daily, :date, { class: 'form-control datepicker input-lg', placeholder: 'Date' } %>
         </div>
 
         <div class="form-group">
-          <%= text_area :daily, :comments, { class: 'form-control', placeholder: 'Comments', :rows => "4" } %>
+          <%= text_area :daily, :comments, { class: 'form-control input-lg', placeholder: 'Comments', :rows => "4" } %>
         </div>
 
         <%= render "layouts/messages" %>
