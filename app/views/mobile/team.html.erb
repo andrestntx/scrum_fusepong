@@ -17,7 +17,9 @@
           <div class="radio-button">
             <% @user.projects.each do |project| %>
               <%= radio_button_tag "daily[project_id]", project.id, false %>
-              <%= label_tag "daily[project_id][#{project.id}]", project.name, :class => "btn", :style => "background: #{project.color}" %> 
+              <label for='<%= "daily_project_id_#{project.id}" %>' class="btn" style='<%= "background: #{project.color}" %>'>
+                <span> <%= project.name %> </span>
+              </label>
             <% end %>
           </div>
         </div>
@@ -27,7 +29,7 @@
           <div class="radio-button">
             <% DailyTime.all.each do |daily| %>
               <%= radio_button_tag "daily[daily_time_id]", daily.id, false %>
-              <%= label_tag "daily[daily_time_id][#{daily.id}]", daily.name, :class => "btn" %> 
+              <label for='<%= "daily_daily_time_id_#{daily.id}" %>' class="btn"><span> <%= daily.name %> </span></label>
             <% end %>
           </div>
         </div>
@@ -37,12 +39,15 @@
         </div>
 
         <div class="form-group">
-          <%= text_area :daily, :comments, { class: 'form-control', placeholder: 'Comments' } %>
+          <%= text_area :daily, :comments, { class: 'form-control', placeholder: 'Comments', :rows => "4" } %>
         </div>
 
         <%= render "layouts/messages" %>
         
-        <%= submit_tag 'New Daily', class: 'btn btn-primary'%>
+        <div class="form-group">
+          <%= submit_tag 'New Daily', class: 'btn-lg btn btn-primary btn-block' %>
+        </div>
+
       <% end %>
     </div>
     <!-- /.col-xs-8 -->

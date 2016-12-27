@@ -93,7 +93,13 @@
     margin-bottom: 0.5em;
     background: #e0dfdf;
     overflow: auto;
-    line-height: 150%;
+    line-height: 500%;
+}
+
+.radio-button label span {
+    line-height: normal;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .radio-button label:nth-of-type(3n+3) {
@@ -113,4 +119,5 @@
 
 .radio-button input[type=radio]:checked + label {
     border: 3px solid rgba(3, 169, 244, 0.76);
+    opacity: 0.8;
 }
