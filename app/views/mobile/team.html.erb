@@ -4,7 +4,7 @@
       <img src="/fusepong.png" alt="" class="img-responsive logo">
     </a>
     <div class="col-xs-4" id="team">
-      <img src="http://placehold.it/100x100" class="img-responsive avatar"> 
+      <img src="<%= @user.avatar %>" class="img-responsive avatar"> 
       <%= form_tag(dailies_mobile_path(@user, @user.dailies.build), html: { class: '' }) do %>
         <ul>
           <% @new_daily.errors.full_messages.each do |msg| %>
