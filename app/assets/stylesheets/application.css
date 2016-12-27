@@ -89,6 +89,10 @@
     font-size: 1.2em;
 }
 
+.container-mobile .form-control[readonly] {
+    background-color: white;
+}
+
 .radio-button  {
     display: block;
     margin-bottom: 1em;
