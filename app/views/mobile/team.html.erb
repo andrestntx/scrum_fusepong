@@ -11,9 +11,16 @@
             <li><%= msg %></li>
           <% end %>
         </ul>
-
+        
         <div class="form-group">
-          <%= collection_select :daily, :project_id, @user.projects, :id, :name, {}, {class: "form-control", placeholder: "Projects"} %>
+          <div class="radio-button row">
+            <% @user.projects.each do |project| %>
+              <div class="col-xs-6 col-sm-4">
+                <%= radio_button_tag "daily[project_id]", project.id, false %>
+                <%= label_tag "daily[project_id][#{project.id}]", project.name, :class => "btn", :style => "background: #{project.color}" %> 
+              </div>
+            <% end %>
+          </div>
         </div>
 
         <div class="form-group">

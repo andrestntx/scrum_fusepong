@@ -77,3 +77,15 @@
     text-align: center;
     font-size: 1.2em;
 }
+
+.radio-button label {
+    white-space: normal;
+}
+
+.radio-button input[type=radio] {
+    display: none;
+}
+
+.radio-button input[type=radio]:checked + label {
+    border: 3px solid rgba(3, 169, 244, 0.76);
+}
