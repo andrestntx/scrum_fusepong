@@ -63,6 +63,15 @@
     margin-bottom: 0; 
 }
 
+.datepicker .datepicker-days td,  .datepicker  .datepicker-days th {
+    width: 50px !important;
+    height: 50px !important;
+}
+
+.datepicker td, .datepicker th {
+    font-size: 1.3em;
+}
+
 .container-mobile#user-detail #calendar-container {
 	margin-top: 2.5em;
 }
