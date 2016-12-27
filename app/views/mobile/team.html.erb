@@ -13,18 +13,23 @@
         </ul>
         
         <div class="form-group">
+          <label for="">Project</label>
           <div class="radio-button">
             <% @user.projects.each do |project| %>
-              <div class="square">
-                <%= radio_button_tag "daily[project_id]", project.id, false %>
-                <%= label_tag "daily[project_id][#{project.id}]", project.name, :class => "btn", :style => "background: #{project.color}" %> 
-              </div>
+              <%= radio_button_tag "daily[project_id]", project.id, false %>
+              <%= label_tag "daily[project_id][#{project.id}]", project.name, :class => "btn", :style => "background: #{project.color}" %> 
             <% end %>
           </div>
         </div>
 
         <div class="form-group">
-        <%= collection_select :daily, :daily_time_id, DailyTime.all, :id, :name, {}, {class: "form-control", placeholder: "Time"} %>
+          <label for="">Time</label>
+          <div class="radio-button">
+            <% DailyTime.all.each do |daily| %>
+              <%= radio_button_tag "daily[daily_time_id]", daily.id, false %>
+              <%= label_tag "daily[daily_time_id][#{daily.id}]", daily.name, :class => "btn" %> 
+            <% end %>
+          </div>
         </div>
 
         <div class="form-group">

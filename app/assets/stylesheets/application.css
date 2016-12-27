@@ -90,9 +90,12 @@
     float: left;
     margin-right: 3%;
     padding: 1em;
+    margin-bottom: 0.5em;
+    background: gray;
+    overflow: auto;
 }
 
-.radio-button label:nth-child(3) {
+.radio-button label:nth-of-type(3) {
     margin-right:0;
 }
 
