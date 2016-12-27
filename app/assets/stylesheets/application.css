@@ -91,11 +91,12 @@
     margin-right: 3%;
     padding: 1em;
     margin-bottom: 0.5em;
-    background: gray;
+    background: #e0dfdf;
     overflow: auto;
+    line-height: 150%;
 }
 
-.radio-button label:nth-of-type(3) {
+.radio-button label:nth-of-type(3n+3) {
     margin-right:0;
 }
 
