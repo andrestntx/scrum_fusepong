@@ -6,6 +6,7 @@
 
 var ApplicationService = function() {
 
+    // Evento para dibujar modales que se llama desde los calendarios *Que se van a borrar
     function drawCalendarEvent(calendarEvent) {
         if(calendarEvent.production) {
             drawProductionModal(calendarEvent);
@@ -38,6 +39,7 @@ var ApplicationService = function() {
         }
     }
 
+    // Función predeterminada de la plantilla para inicializarla.
     function loadTemplate() {
         $(window).bind("load resize", function() {
             var topOffset = 50;
@@ -74,6 +76,7 @@ var ApplicationService = function() {
         }
     }
 
+    // Funciones propias de la aplicación
     function initApplication() {
         $('#side-menu').metisMenu();
 

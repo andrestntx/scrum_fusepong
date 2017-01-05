@@ -53,7 +53,7 @@ class Sprint < ApplicationRecord
 
 	def add_productions(dates)
 		dates.each do |date|
-		   production = self.sprint_productions.new()
+		   production = self.sprint_productions.new
 		   production.date = date 
 		   production.save()
 		end

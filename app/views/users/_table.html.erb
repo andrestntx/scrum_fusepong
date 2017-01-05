@@ -2,8 +2,8 @@
   <thead>
     <tr>
       <th>User</th>
-      <th class="text-center">Dailies (month / total)</th>
-      <th class="text-center">Hours (month / total)</th>
+      <th class="text-center">Dailies</th>
+      <th class="text-center">Hours</th>
     </tr>
   </thead>
 
@@ -11,8 +11,8 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= link_to user.name, user %></td>
-        <td class="text-center"><%= user.month_dailies_count %> / <%= user.dailies_count %></td>
-        <td class="text-center"><%= user.month_hours %> / <%= user.hours %></td>              
+        <td class="text-center"><%= user.dailies_count %></td>
+        <td class="text-center"><%= user.hours %></td>              
       </tr>
     <% end %>
   </tbody>

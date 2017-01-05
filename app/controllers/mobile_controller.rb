@@ -13,8 +13,5 @@ class MobileController < ApplicationController
 	def projects
 		@project  = Project.find(params[:id])
 	end
-
-
-	private
 		
 end

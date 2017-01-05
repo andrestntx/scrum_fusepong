@@ -23,7 +23,6 @@ class SprintsController < ApplicationController
 		@users = User.report_by_sprint(@project.id, @sprint.id, month_now)
 	end
 
-	# GET /projects/1/edit
 	def edit
 	end
 
@@ -39,7 +38,6 @@ class SprintsController < ApplicationController
 	    end
 	end
 
-	# PATCH/PUT /projects/1
 	def update
 	    if @sprint.update(sprint_params)
 	    	@sprint.update_productions(sprint_productions)

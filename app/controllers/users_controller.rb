@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 	def show_developer
 	end
 
+	# Permite crear un nuevo daily al usuario actualmente logueado
 	def account
 		@user = current_user
 		@projects = Project.report_by_user(current_user.id, month_now)
@@ -40,8 +41,6 @@ class UsersController < ApplicationController
 				events << production.calendar_user
 			end
 	    end
-
-
 
 	    render :text => events.to_json
 	end

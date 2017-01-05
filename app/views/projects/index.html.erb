@@ -23,8 +23,6 @@
               <th>Started at</th>
               <th class="text-center">Cal. Sprints</th>
               <th class="text-center">Sprints</th>
-              <th class="text-center">Dailies</th>
-              <th class="text-center">Hours</th>
               <th class="text-center">Team</th>
               <th class="text-center">Options</th>
             </tr>
@@ -37,9 +35,7 @@
                 <td><%= project.client %></td>
                 <td><%= project.started_at %></td>
                 <td class="text-center"><%= project.calculated_sprints %> </td>
-                <td class="text-center"><%= project.sprints.count %> / <%= project.month_sprints_count %> </td>
-                <td class="text-center"><%= project.dailies_count %> / <%= project.month_dailies_count %></td>
-                <td class="text-center"><%= project.hours %> / <%= project.month_hours %></td>
+                <td class="text-center"><%= project.sprints.count %>  </td>
                 <td class="text-center"><%= project.users.count %></td>
                 <td class="text-center"><%= link_to 'Edit', edit_project_path(project), class: 'btn btn-warning' %></td>
               </tr>
